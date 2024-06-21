@@ -1,0 +1,24 @@
+name: Code-cov
+on:
+  push:
+    branches: ["main"]
+jobs:
+  code-cov:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v4
+
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v4.0.1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
+      # - uses: codecov/codecov-action@v4
+      #   with:
+      #     fail_ci_if_error: true # optional (default = false)
+      #     files: ./coverage1.xml,./coverage2.xml # optional
+      #     flags: unittests # optional
+      #     name: codecov-umbrella # optional
+      #     token: ${{ secrets.CODECOV_TOKEN }} # required
+      #     verbose: true # optional (default = false)
